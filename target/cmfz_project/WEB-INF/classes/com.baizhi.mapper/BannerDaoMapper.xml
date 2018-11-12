@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.BannerDao">
+    <select id="findAll" resultType="Banner" >
+        select id,title,status,imgPath,createDate
+        from cmfz_banner
+    </select>
+    <insert id="insert" parameterType="Banner">
+        insert into cmfz_banner
+        values (#{id},#{title},#{status},#{imgPath},#{createDate})
+    </insert>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from cmfz_banner
+        where id=#{id}
+    </delete>
+    <update id="update" parameterType="Banner">
+        update cmfz_banner
+        set title=#{title},status=#{status},imgPath=#{imgPath},createDate=#{createDate}
+        where id=#{id}
+    </update>
+    <select id="queryOne" resultType="Banner" parameterType="java.lang.String">
+       select id,title,status,imgPath,createDate
+        from cmfz_banner
+        where id=#{id}
+    </select>
+</mapper>

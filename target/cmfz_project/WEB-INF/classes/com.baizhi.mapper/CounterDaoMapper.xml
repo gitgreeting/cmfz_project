@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.CounterDao">
+    <select id="insert" parameterType="Counter">
+        insert into cmfz_counter
+        values (#{id},#{title},#{total},#{recordDate},#{user_id},#{course_id})
+    </select>
+    <update id="update" parameterType="Counter">
+      update cmfz_counter
+      set id=#{id},title=#{title},total=#{total},recordDate=#{recordDate},user_id=#{user_id},course_id=#{course_id}
+      where id = id
+    </update>
+    <select id="queryOne" parameterType="java.lang.String" resultType="Counter">
+        select id,title,total,recordDate,user_id,course_id
+        from cmfz_counter
+        where id = #{id}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from cmfz_counter where id = #{id}
+    </delete>
+    <select id="findAll" resultType="Counter">
+        select id,title,total,recordDate,user_id,course_id
+        from cmfz_counter
+    </select>
+</mapper>

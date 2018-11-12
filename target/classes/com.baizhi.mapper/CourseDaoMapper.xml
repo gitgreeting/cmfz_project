@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.CourseDao">
+    <select id="insert" parameterType="Course">
+        insert into cmfz_course
+        values (#{id},#{title},#{marking},#{createDate},#{c_user_id})
+    </select>
+    <update id="update" parameterType="Course">
+      update cmfz_course
+      set id=#{id},title=#{title},marking=#{marking},createDate=#{createDate},c_user_id=#{c_user_id}
+      where id = id
+    </update>
+    <select id="queryOne" parameterType="java.lang.String" resultType="Course">
+        select id,title,marking,createDate,c_user_id
+        from cmfz_course
+        where id = #{id}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from cmfz_course where id = #{id}
+    </delete>
+    <select id="findAll" resultType="Course">
+        select id,title,marking,createDate,c_user_id
+        from cmfz_course
+    </select>
+</mapper>

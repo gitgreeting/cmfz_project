@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.GuruDao">
+    <insert id="insert" parameterType="Guru">
+      insert into cmfz_guru
+      values (#{id},#{name},#{headPic},#{gender})
+    </insert>
+    <update id="update" parameterType="Guru">
+      update cmfz_guru
+      set name=#{name},headPic=#{headPic},gender=#{gender}
+      where id=#{id}
+    </update>
+    <select id="queryOne" parameterType="java.lang.String" resultType="Guru">
+      select id,name,headPic,gender
+      from cmfz_guru
+      where id= #{id}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from cmfz_guru
+        where id = #{id}
+    </delete>
+    <select id="findAll" resultType="Guru">
+        select id,name,headPic,gender from cmfz_guru
+    </select>
+</mapper>

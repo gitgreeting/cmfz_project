@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AdminDao">
+    <select id="login" resultType="Admin">
+        select admin_id,name,password
+        from cmfz_admin
+        where name=#{name} and password=#{password}
+    </select>
+    <update id="update" parameterType="Admin">
+      update cmfz_admin
+      set password=#{password}
+      where admin_id = #{admin_id}
+    </update>
+    <select id="queryOne" parameterType="java.lang.String" resultType="Admin">
+        select admin_id,name,password
+        from cmfz_admin
+        where admin_id=#{admin_id}
+    </select>
+</mapper>

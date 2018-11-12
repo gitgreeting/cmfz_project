@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AlbumDao">
+    <resultMap id="ca" type="Album">
+        <id column="id" property="id"/>
+        <id column="title" property="title"/>
+        <id column="publish_date" property="publish_date"/>
+        <id column="count" property="count"/>
+        <id column="coverImg" property="coverImg"/>
+        <id column="score" property="score"/>
+        <id column="author" property="author"/>
+        <id column="broadCast" property="broadCast"/>
+        <id column="brief" property="brief"/>
+        <id column="sign" property="sign"/>
+        <collection property="children" ofType="Chapter">
+            <id column="cid" property="id"/>
+            <id column="ctitle" property="title"/>
+            <id column="cduration" property="duration"/>
+            <id column="cdownPath" property="downPath"/>
+            <id column="cuploadTime" property="uploadTime"/>
+            <id column="cablum_id" property="album_id"/>
+            <id column="csign" property="sign"/>
+        </collection>
+    </resultMap>
+    <select id="showPages" resultMap="ca">
+        select a.id,a.title,a.publish_date,a.count,a.coverImg,a.score,a.author,a.broadCast,a.brief,a.sign,
+                c.id cid,c.title ctitle,c.duration cduration,c.downPath cdownPath,
+                c.uploadTime cuploadTime,c.album_id cablum_id,c.sign csign
+        from cmfz_album a
+        left join cmfz_chapter c
+        on  a.id = c.album_id limit #{start},#{rows}
+    </select>
+    <insert id="insert" parameterType="Album">
+        insert into cmfz_album
+        values (#{id},#{title},#{publish_date},#{count},#{coverImg},#{score},#{author},#{broadCast},#{brief},#{sign})
+    </insert>
+    <select id="findAll" resultType="Album">
+        select id,title,publish_date,count,coverImg,score,author,broadCast,brief,sign
+        from cmfz_album
+    </select>
+    <select id="queryOne" resultType="Album" parameterType="java.lang.String">
+      select id,title,publish_date,count,coverImg,score,author,broadCast,brief,sign
+      from cmfz_album
+       where  id=#{id}
+    </select>
+</mapper>

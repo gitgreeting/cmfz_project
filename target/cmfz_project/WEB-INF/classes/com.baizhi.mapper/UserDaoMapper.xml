@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.UserDao">
+    <select id="insert" parameterType="User">
+        insert into cmfz_user
+        values (#{id},#{phoneNum},#{nickName},#{userName},#{password},#{salt},#{headPic},#{province},#{city},#{gender},#{sign},#{status},#{date})
+    </select>
+    <update id="update" parameterType="User">
+      update cmfz_user
+      set phoneNum=#{phoneNum},nickName=#{nickName},userName=#{userName},password=#{password},salt=#{salt},
+          headPic=#{headPic},province=#{province},city=#{city},gender=#{gender},sign=#{sign},status=#{status},date=#{date}
+      where id = #{id}
+    </update>
+    <select id="queryOne" parameterType="java.lang.String" resultType="User">
+        select id,phoneNum,nickName,userName,password,salt,headPic,province,city,gender,sign,status,date
+        from cmfz_user
+        where id = #{id}
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from cmfz_user where id = #{id}
+    </delete>
+    <select id="findAll" resultType="User">
+        select id,phoneNum,nickName,userName,password,salt,headPic,province,city,gender,sign,status,date
+        from cmfz_user
+    </select>
+    <select id="userLogin" resultType="User">
+        select id,phoneNum,nickName,userName,password,salt,headPic,province,city,gender,sign,status,date
+        from cmfz_user
+        where phoneNum=#{0} and password =#{1}
+    </select>
+</mapper>
